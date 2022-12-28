@@ -29,8 +29,10 @@ class Solution{
             }
 
         }
+        if(ans>0)
 
         return ans;
+        else return -1;
 
     }
         
