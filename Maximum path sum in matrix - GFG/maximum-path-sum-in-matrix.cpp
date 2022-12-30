@@ -29,17 +29,35 @@ int f(int i, int j,int m, vector<vector<int> > &matrix,
     int maximumPath(int n, vector<vector<int>> matrix)
     {
     int m = matrix[0].size();
+        int maxi = INT_MIN;
     
-    vector<vector<int>> dp(n,vector<int>(m,-1));
-    
-    int maxi = INT_MIN;
-    
+    vector<vector<int>> dp(n,vector<int>(m));
     for(int j=0; j<m;j++){
-        int ans = f(n-1,j,m,matrix,dp);
-        maxi = max(maxi,ans);
+        dp[0][j]=matrix[0][j];
     }
-    
+    for(int i=1;i<n;i++){
+        for(int j=0;j<m;j++){
+    int ld=INT_MIN,rd=INT_MIN;
+    int up = matrix[i][j] + dp[i-1][j];
+   if(j>0)ld = matrix[i][j] + dp[i-1][j-1];
+    if(j<m-1)rd= matrix[i][j] + dp[i-1][j+1];
+    dp[i][j]= max(up,max(ld,rd));
+        }
+    }
+     for(int j=0; j<m;j++){
+       maxi=max(maxi,dp[n-1][j]);
+    }
     return maxi;
+    
+    
+
+    
+    // for(int j=0; j<m;j++){
+    //     int ans = f(n-1,j,m,matrix,dp);
+    //     maxi = max(maxi,ans);
+    // }
+    
+    // return maxi;
 
         
     }
