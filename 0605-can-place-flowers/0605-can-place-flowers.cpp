@@ -27,10 +27,7 @@ public:
                f[x-1]=2;
                cnt++;
            }
-           // return(cnt>=n);
-        for(int i=0;i<x;i++){
-            cout<<f[i]<<" ";
-        }
+       
         return(cnt>=n);
            
     }
