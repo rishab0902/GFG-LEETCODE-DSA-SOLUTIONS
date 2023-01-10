@@ -16,7 +16,7 @@ class Solution {
         if(coins[ind]<=sum){
             take=f(ind,sum-coins[ind],coins,dp);
         }
-        dp[ind][sum]=take+ntake;
+        return dp[ind][sum]=take+ntake;
   }
     long long int count(int coins[], int N, int sum) {
       
