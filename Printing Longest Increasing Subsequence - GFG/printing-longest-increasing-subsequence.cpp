@@ -5,6 +5,9 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
+    bool comp(string& s1, string& s2){
+    return s1.size() < s2.size();
+}
   public:
     vector<int> longestIncreasingSubsequence(int n, vector<int>& arr) {
         // Code here
