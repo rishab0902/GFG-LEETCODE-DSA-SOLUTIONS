@@ -63,8 +63,8 @@ class Solution
             
         }
         }
-        if(cntf!=cnt)return -1;
-        return tm;
+        if(cntf==cnt)return tm;
+        return -1;
         
     }
 };
