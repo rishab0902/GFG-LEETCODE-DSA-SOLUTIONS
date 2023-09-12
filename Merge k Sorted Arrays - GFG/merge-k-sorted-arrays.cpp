@@ -13,7 +13,23 @@ for (int i=0; i < size; i++)
 
 // } Driver Code Ends
 //User function Template for C++
-
+class node{
+    public:
+    int data;
+    int i;
+    int j;
+    node(int data,int row,int col){
+        this->data=data;
+        i=row;
+        j=col;
+    }
+};
+class compare{
+    public:
+    bool operator()(node *a,node*b){
+        return a->data>b->data;
+    }
+};
 
 class Solution
 {
@@ -22,15 +38,24 @@ class Solution
     vector<int> mergeKArrays(vector<vector<int>> arr, int k)
     {
         //code here
+        priority_queue<node*,vector<node*>,compare> mhp;
+        for(int i=0;i<k;i++){
+            node* tmp=new node(arr[i][0],i,0);
+            mhp.push(tmp);
+        }
         vector<int> ans;
-        priority_queue<int,vector<int>,greater<int>> pq;
-        for(int i=0;i<k;i++)
-            for(int j=0;j<k;j++)
-                pq.push(arr[i][j]);
-        
-        while(pq.size()){
-            ans.push_back(pq.top());
-            pq.pop();
+        while(mhp.size()>=1){
+            node *tmp=mhp.top();
+            ans.push_back(tmp->data);
+            mhp.pop();
+            
+            int i=tmp->i;
+            int j=tmp->j;
+            
+            if(j+1<arr[i].size() ){
+                 node* next=new node(arr[i][j+1],i,j+1);
+                 mhp.push(next);
+            }
         }
         return ans;
     }
